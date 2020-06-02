@@ -5,7 +5,9 @@ import Person from './Person/Person';
 
 const StyledButton = styled.button`
 /*inside this component we write normal CSS */
-      background-color: green;
+      background-color: ${props => props.alt ? 'red' : 'green'}; /*ternary function that allows to:
+      if true, if there is the props that we defined bellow, then this background color
+      should be red, otherwise (if false) it should continue green */
       color: white;
       font: inherit;
       border: 1px solid blue;
@@ -13,8 +15,8 @@ const StyledButton = styled.button`
       cursor: pointer;
 
       &:hover {
-        background-color: lightgreen;
-        color: black;
+        background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+        color: ${props => props.alt ? 'blue' : 'black'};;
       }
     `;
 
@@ -96,11 +98,11 @@ class App extends Component {
         </div>
       );
 
-       style.backgroundColor = 'red';
+      /*  style.backgroundColor = 'red';
       style[':hover'] = {
         backgroundColor: 'salmon',
         color: 'black'
-      } 
+      }; */
     }
 
     //variable classes is just a String joined with an empty space ('red bold')
@@ -124,7 +126,7 @@ class App extends Component {
         <h1>Hi, I'm a React App</h1>
         <p className={classes.join(' ')}>This is really working!</p>
         {/* classes is just an array, we need to pass a string: classes.join(' ')*/}
-        <StyledButton //from the component above
+        <StyledButton alt={this.state.showPersons} //props added so that it can be called after this method
           onClick={this.togglePersonsHandler}>Toggle Persons</StyledButton>
         {persons}
       </div>
