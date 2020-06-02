@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import './App.css';
 import Person from './Person/Person';
+
+const StyledButton = styled.button`
+/*inside this component we write normal CSS */
+      background-color: green;
+      color: white;
+      font: inherit;
+      border: 1px solid blue;
+      padding: 8px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: lightgreen;
+        color: black;
+      }
+    `;
 
 class App extends Component {
   state = {
@@ -55,6 +71,7 @@ class App extends Component {
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer',
+
       ':hover': {
         backgroundColor: 'lightgreen',
         color: 'black'
@@ -79,11 +96,11 @@ class App extends Component {
         </div>
       );
 
-      style.backgroundColor = 'red';
+       style.backgroundColor = 'red';
       style[':hover'] = {
         backgroundColor: 'salmon',
         color: 'black'
-      }
+      } 
     }
 
     //variable classes is just a String joined with an empty space ('red bold')
@@ -107,9 +124,8 @@ class App extends Component {
         <h1>Hi, I'm a React App</h1>
         <p className={classes.join(' ')}>This is really working!</p>
         {/* classes is just an array, we need to pass a string: classes.join(' ')*/}
-        <button
-          style={style}
-          onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        <StyledButton //from the component above
+          onClick={this.togglePersonsHandler}>Toggle Persons</StyledButton>
         {persons}
       </div>
     );
