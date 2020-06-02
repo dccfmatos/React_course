@@ -53,7 +53,7 @@ class App extends Component {
   render () {
     
     let persons = null;
-    let btnClass = [styles.Button];
+    let btnClass = '';
 
     if ( this.state.showPersons ) {
       persons = (
@@ -72,7 +72,7 @@ class App extends Component {
       );
 
       //change styles dinamically
-      btnClass.push(styles.Red);//btnClass will be an array with the btnClass and the Red class
+      btnClass = styles.Red;//btnClass will be an array with the btnClass and the Red class
     }
 
     //variable assignedClasses is just a String joined with an empty space ('red bold')
@@ -96,8 +96,8 @@ class App extends Component {
         <h1>Hi, I'm a React App</h1>
         <p className={assignedClasses.join(' ')}>This is really working!</p>
         {/* assignedClasses is just an array, we need to pass a string: classes.join(' ')*/}
-        <button className={btnClass.join(' ')} //join all the classes in ther (.button)
-          onClick={this.togglePersonsHandler}>Toggle Persons</button>;
+        <button className={btnClass} //join all the classes in ther (.button)
+          onClick={this.togglePersonsHandler}>Toggle Persons</button>
         {persons}
       </div>
     );
