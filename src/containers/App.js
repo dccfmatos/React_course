@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
 import styles from './App.module.css';
-//React V2.0 +, just have to import this "styles" and name de css file
-//[name].module.css
-//then call styles.[class name on css] to use it
 
 class App extends Component {
   state = {
@@ -30,7 +27,6 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
     
-
     this.setState( {persons: persons} );
   }
 
@@ -41,33 +37,30 @@ class App extends Component {
     this.setState({persons: persons});
   } 
 
-
-
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState( { showPersons: !doesShow } );
   } 
-  
   
 
   render () {
     
     let persons = null;
     let btnClass = '';
-
-    if ( this.state.showPersons ) {
+    if (this.state.showPersons) {
       persons = (
         <div>
-        {this.state.persons.map((person, index) => {
-          return <Person 
-            click={() => this.deletePersonHandler(index)}
-            name={person.name}
-            age={person.age}
-            key={person.id}
-            changed={(event) => this.nameChangedHandler(event, persons.id)}
-            />
-        })}
-         
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                click={() => this.deletePersonHandler(index)}
+                name={person.name}
+                age={person.age}
+                key={person.id}
+                changed={event => this.nameChangedHandler(event, person.id)}
+              />
+            );
+          })}
         </div>
       );
 
@@ -96,7 +89,7 @@ class App extends Component {
         <h1>Hi, I'm a React App</h1>
         <p className={assignedClasses.join(' ')}>This is really working!</p>
         {/* assignedClasses is just an array, we need to pass a string: classes.join(' ')*/}
-        <button className={btnClass} //join all the classes in ther (.button)
+        <button className={btnClass} //join all the classes in the (.button)
           onClick={this.togglePersonsHandler}>Toggle Persons</button>
         {persons}
       </div>
